@@ -1,0 +1,16 @@
+
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="/css/main.css"
+<html>
+    <body>
+        <div class="center">Where would you like to travel?</div>
+        <br>
+        <div class="input">
+            <form method="GET">
+                <input type="text" name="country">
+                <input type="submit" value="Vamos"
+            </form>
+        </div>
+    </body>
+</html>
