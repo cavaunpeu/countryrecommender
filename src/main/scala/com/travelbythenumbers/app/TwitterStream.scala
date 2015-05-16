@@ -6,13 +6,13 @@ import scala.collection.mutable.{ListBuffer, Map}
 import scala.util.matching.Regex
 
 
-object StatusStreamer {
+object TweetStreamer {
     def main(args: Array[String]) {
         val twitterStream = new TwitterStreamFactory(Util.config).getInstance
         twitterStream.addListener(Util.simpleStatusListener)
-        twitterStream.filter(new FilterQuery().track(Array("#ttot", "#travel", "#lp", 
+        twitterStream.filter(new FilterQuery().track(Array("#ttot", "#travel", "#lp",
             "vacation", "holiday", "wanderlust", "viajar", "voyager", "destination",
-            "tbex", "tourism")))    
+            "tbex", "tourism")))
         Thread.sleep(36000000)
         twitterStream.cleanUp
         twitterStream.shutdown
@@ -31,7 +31,7 @@ object Util {
         .build
 
     /** define sqlite parameters */
-    val conn_str = "jdbc:sqlite:/Users/williamwolf/sqlite/tweet-reco.db"
+    val conn_str = "jdbc:sqlite:/Users/willwolf/db/sqlite/tweet-reco.db"
     Class.forName("org.sqlite.JDBC")
     val conn = DriverManager.getConnection(conn_str)
 
@@ -47,15 +47,15 @@ object Util {
         var matches = ListBuffer[String]()
         for ((k,v) <- countries_capitals) {
             val patterns = List(
-                    s"$k", 
-                    s"$k".replaceAll(" ", ""), 
-                    s"$v", 
+                    s"$k",
+                    s"$k".replaceAll(" ", ""),
+                    s"$v",
                     s"$v".replaceAll(" ", "")
                 )
             var matches_inner = ListBuffer[Option[String]]()
             for (p <- patterns) {
                 matches_inner += new Regex(p.toLowerCase) findFirstIn tweet.toLowerCase
-            } 
+            }
             if (matches_inner.exists(_.isDefined)) matches += k
         }
         matches.toList
