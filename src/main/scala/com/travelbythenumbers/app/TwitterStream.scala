@@ -31,7 +31,7 @@ object Util {
         .build
 
     /** define sqlite parameters */
-    val conn_str = "jdbc:sqlite:/Users/willwolf/db/sqlite/tweet-reco.db"
+    val conn_str = "jdbc:sqlite:/Users/willwolf/sqlite/tweet-reco.db"
     Class.forName("org.sqlite.JDBC")
     val conn = DriverManager.getConnection(conn_str)
 

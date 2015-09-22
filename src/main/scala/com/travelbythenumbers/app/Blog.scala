@@ -29,7 +29,7 @@ class Blog extends CountryrecommenderStack with SQLiteCredentials {
         }
         layoutTemplate("/WEB-INF/templates/layouts/country.ssp", "country" -> params.get("country"), "jaccard_sims" -> jaccard_sims)
     } else {
-        layoutTemplate("/WEB-INF/templates/layouts/main.ssp")
+        ssp("/result")
     }
   }
 }

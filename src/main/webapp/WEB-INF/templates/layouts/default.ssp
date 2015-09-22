@@ -1,16 +1,18 @@
+<%@ val body: String %>
 
 <!DOCTYPE html>
-<head>
-    <link rel="stylesheet" href="/css/main.css"
 <html>
+    <head>
+        <link rel="stylesheet" href="/css/main.css"
+    </head>
     <body>
-        <div class="center">Where would you like to travel?</div>
-        <br>
+        <div id="title-text">Where would you like to travel?</div>
         <div class="input">
             <form method="GET">
                 <input type="text" name="country">
                 <input type="submit" value="Vamos"
             </form>
         </div>
+        <%= unescape(body) %>
     </body>
 </html>
