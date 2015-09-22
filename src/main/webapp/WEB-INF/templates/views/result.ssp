@@ -1,1 +1,9 @@
-<p>no fckin way<p>
+<% import scala.collection.mutable.ListBuffer %>
+
+<%@ val country: Option[String] %>
+<%@ val jaccard_sims: ListBuffer[(String, String)] %>
+
+<p>
+    <%= country %>:
+    <%= jaccard_sims %>
+<p>

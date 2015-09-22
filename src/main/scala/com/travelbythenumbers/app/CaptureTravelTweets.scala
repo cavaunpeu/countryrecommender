@@ -5,23 +5,24 @@ import java.sql.{Connection, DriverManager}
 import scala.collection.mutable.{ListBuffer, Map}
 import scala.util.matching.Regex
 
+object CaptureTravelTweets {
 
-object TweetStreamer {
-    def main(args: Array[String]) {
-        val twitterStream = new TwitterStreamFactory(Util.config).getInstance
-        twitterStream.addListener(Util.simpleStatusListener)
-        twitterStream.filter(new FilterQuery().track(Array("#ttot", "#travel", "#lp",
+    val travel_tags = Array("#ttot", "#travel", "#lp",
             "vacation", "holiday", "wanderlust", "viajar", "voyager", "destination",
-            "tbex", "tourism")))
+            "tbex", "tourism")
+
+    def main(args: Array[String]) {
+        val twitterStream = new TwitterStreamFactory(TwitterUtil.config).getInstance
+        twitterStream.addListener(TwitterUtil.simpleStatusListener)
+        twitterStream.filter(new FilterQuery().track(travel_tags))
         Thread.sleep(36000000)
         twitterStream.cleanUp
         twitterStream.shutdown
-        Util.conn.close()
+        TwitterUtil.conn.close()
     }
 }
 
-
-object Util {
+object TwitterUtil {
     /** define API credentials */
     val config = new twitter4j.conf.ConfigurationBuilder()
         .setOAuthConsumerKey("s83zMIukhW1PyA6fKrEl6EjKc")

@@ -8,9 +8,9 @@
     <body>
         <div id="title-text">Where would you like to travel?</div>
         <div class="input">
-            <form method="GET">
+            <form action="/" method="GET">
                 <input type="text" name="country">
-                <input type="submit" value="Vamos"
+                <input type="submit" value="Vamos">
             </form>
         </div>
         <%= unescape(body) %>
