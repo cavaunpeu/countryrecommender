@@ -19,7 +19,8 @@ object TwitterUtil extends SQLiteCredentials {
     def load_countries_and_capitals() = {
 
         val statement = conn.createStatement()
-        val resultSet = statement.executeQuery("SELECT * FROM $countries_table")
+        val query = s"""SELECT * FROM $countries_table"""
+        val resultSet = statement.executeQuery(query)
         var countries_capitals = Map[String, String]()
         while ( resultSet.next() ) {
             countries_capitals(resultSet.getString("country")) = resultSet.getString("capital")
