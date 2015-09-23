@@ -6,7 +6,7 @@ import scala.collection.mutable.{ListBuffer, Map}
 import scala.util.matching.Regex
 
 object TwitterUtil extends SQLiteCredentials {
-    /** define API credentials */
+
     val config = new twitter4j.conf.ConfigurationBuilder()
         .setOAuthConsumerKey("s83zMIukhW1PyA6fKrEl6EjKc")
         .setOAuthConsumerSecret("flFs0z27xjpM00jTN8hkIw4BAKRukbOgM1AHxnkQa4kEn8vrIR")
@@ -14,16 +14,22 @@ object TwitterUtil extends SQLiteCredentials {
         .setOAuthAccessTokenSecret("bqa1FKFmZvo2jzmte1cZfB0X4OrXpeOSWMplv6ImH4aCS")
         .build
 
-    /** read in list of world countries and capitals */
-    val statement = conn.createStatement()
-    val resultSet = statement.executeQuery("SELECT * FROM countries")
-    var countries_capitals = Map[String, String]()
-    while ( resultSet.next() ) {
-        countries_capitals(resultSet.getString("country")) = resultSet.getString("capital")
+    def load_countries_and_capitals() = {
+
+        val statement = conn.createStatement()
+        val resultSet = statement.executeQuery("SELECT * FROM countries")
+        var countries_capitals = Map[String, String]()
+        while ( resultSet.next() ) {
+            countries_capitals(resultSet.getString("country")) = resultSet.getString("capital")
+        }
+        countries_capitals
     }
 
-    def giveLocation(tweet: String) = {
+    def label_tweet_with_location(tweet: String) = {
+
+        val countries_capitals = load_countries_and_capitals()
         var matches = ListBuffer[String]()
+
         for ((k,v) <- countries_capitals) {
             val patterns = List(
                     s"$k",
@@ -47,7 +53,7 @@ object TwitterUtil extends SQLiteCredentials {
             val user_id =  status.getUser.getId
             val tweet = status.getText
             val count = 1
-            val loc = giveLocation(tweet)
+            val loc = label_tweet_with_location(tweet)
 
             /** if tweet contains an accepted location, write row to sqlite */
             if ( loc.size > 0 ) {
