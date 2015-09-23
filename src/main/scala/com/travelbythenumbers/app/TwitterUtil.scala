@@ -7,6 +7,8 @@ import scala.util.matching.Regex
 
 object TwitterUtil extends SQLiteCredentials {
 
+    val countries_table = "countries"
+
     val config = new twitter4j.conf.ConfigurationBuilder()
         .setOAuthConsumerKey("s83zMIukhW1PyA6fKrEl6EjKc")
         .setOAuthConsumerSecret("flFs0z27xjpM00jTN8hkIw4BAKRukbOgM1AHxnkQa4kEn8vrIR")
@@ -17,7 +19,7 @@ object TwitterUtil extends SQLiteCredentials {
     def load_countries_and_capitals() = {
 
         val statement = conn.createStatement()
-        val resultSet = statement.executeQuery("SELECT * FROM countries")
+        val resultSet = statement.executeQuery("SELECT * FROM $countries_table")
         var countries_capitals = Map[String, String]()
         while ( resultSet.next() ) {
             countries_capitals(resultSet.getString("country")) = resultSet.getString("capital")
@@ -53,11 +55,10 @@ object TwitterUtil extends SQLiteCredentials {
             val user_id =  status.getUser.getId
             val tweet = status.getText
             val count = 1
-            val loc = label_tweet_with_location(tweet)
+            val location = label_tweet_with_location(tweet)
 
-            /** if tweet contains an accepted location, write row to sqlite */
-            if ( loc.size > 0 ) {
-                for ( l <- loc ) {
+            if ( location.size > 0 ) {
+                for ( l <- location ) {
                     println(l + " : " + tweet)
                     val ps = conn.prepareStatement("""INSERT INTO tweets (id, user_id, tweet, loc, count)
                                              VALUES (?, ?, ?, ?, ?)""")
