@@ -1,11 +1,14 @@
 <% import scala.collection.mutable.ListBuffer %>
 
-<%@ val country: Option[String] %>
+<%@ val country: String %>
 <%@ val country_sims: ListBuffer[(String, Double)] %>
 
 
-<div class="container results">
+<div class="container">
     <hr style="padding-bottom: 50px">
+    <h1 id="queried-country">
+        Nice. If you like ${country}, try these as well.
+    </h1>
     <ol class="similarity-results">
     #for ((country, similarity) <- country_sims)
         <li class="country">${country}</li>
@@ -47,9 +50,11 @@
             y_axis.fontSize = "25px";
             y_axis.addOrderRule("similarity");
 
-            chart.addSeries("null", dimple.plot.bar);
-            chart.draw();
+            chart.addSeries("country", dimple.plot.bar);
+            chart.ease = "bounce";
+            chart.draw(1500);
             y_axis.titleShape.remove();
+            chart.customClassList.axisLine = null;
 
         </script>
     </div>
