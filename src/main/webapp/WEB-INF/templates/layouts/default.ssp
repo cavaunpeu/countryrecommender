@@ -18,30 +18,45 @@
         <link rel="stylesheet" type="text/css" href="/css/main.css">
     </head>
     <body>
-        <div class="container">
+        <nav id="menubar" class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="/">countryrecommender</a>
+                </div>
+            <div class="container">
+        </nav>
 
-        <header class="jumbotron">
-            <h1>To where would you like to travel?</h1>
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <form method="get" action="/">
-                        <div class="input-group">
-                            <input class="form-control"
-                             id="main-input"
-                             type="text"
-                             name="country"
-                             autofocus="autofocus"
-                             placeholder="Everywhere."/>
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="submit" type="button">
-                                Vamos
-                                </button>
-                            </span>
-                        </div>
-                    </form>
+        <div class="container">
+            <div class="jumbotron">
+                <h1>To where would you like to travel?</h1>
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 country-input">
+                        <form method="get" action="/">
+                            <div class="input-group">
+                                <input class="form-control"
+                                 id="main-input"
+                                 type="text"
+                                 name="country"
+                                 autofocus="autofocus"
+                                 placeholder="Everywhere."/>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit" type="button">
+                                    Vamos
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </header>
-        <%= unescape(body) %>
+        </div>
+
+        <section>
+            <%= unescape(body) %>
+        </section>
     </body>
 </html>

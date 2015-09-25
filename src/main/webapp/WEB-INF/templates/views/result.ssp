@@ -3,7 +3,10 @@
 <%@ val country: Option[String] %>
 <%@ val country_sims: ListBuffer[(String, String)] %>
 
-<p>
-    <%= country %>
-    <%= country_sims %>
-<p>
+<div class="container">
+    <hr>
+    <p>
+        <%= country %>
+        <%= country_sims %>
+    </p>
+</div>

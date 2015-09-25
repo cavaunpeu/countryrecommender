@@ -1,9 +1,10 @@
 .jumbotron {
     background-color: white;
-    font-size: 200px;
+    padding-top: 180px;
+    padding-bottom: 30px;
 }
 
-.col-md-10 {
-    padding: 25px;
+.country-input {
+    padding-top: 40px;
 }
 
