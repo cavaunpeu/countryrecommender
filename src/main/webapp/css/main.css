@@ -11,10 +11,20 @@
 .similarity-results {
     color: inherit;
     list-style-type: none;
+    display: none;
 }
 
 .similarity-results > li {
   position: relative;
   font: 45px/1.5 Helvetica, sans-serif;
   margin-bottom: 20px;
+}
+
+.chart div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
 }
