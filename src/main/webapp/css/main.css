@@ -1,19 +1,9 @@
-
-#title-text {
-    position: absolute;
-    width: 520px;
-    height: 50px;
-    top: 50%;
-    left: 50%;
-    margin-left: -260px;
-    margin-top: -125px;
-    color: black;
-    font-size: 40px;
-}​
-
-.input {
-    width: 600px;
-    height: 50px;
-    top: 40%;
-    left: 40%;
+.jumbotron {
+    background-color: white;
+    font-size: 200px;
 }
+
+.col-md-10 {
+    padding: 25px;
+}
+

@@ -1,18 +1,47 @@
 <%@ val body: String %>
+<%@ var baseUrl: String = uri("/") %>
+
 
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="/css/main.css"
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>MOVE.</title>
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="/css/main.css">
     </head>
     <body>
-        <div id="title-text">Where would you like to travel?</div>
-        <div class="input">
-            <form action="/" method="GET">
-                <input type="text" name="country">
-                <input type="submit" value="Vamos">
-            </form>
-        </div>
+        <div class="container">
+
+        <header class="jumbotron">
+            <h1>To where would you like to travel?</h1>
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <form method="get" action="/">
+                        <div class="input-group">
+                            <input class="form-control"
+                             id="main-input"
+                             type="text"
+                             name="country"
+                             autofocus="autofocus"
+                             placeholder="Everywhere."/>
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit" type="button">
+                                Vamos
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </header>
         <%= unescape(body) %>
     </body>
 </html>
