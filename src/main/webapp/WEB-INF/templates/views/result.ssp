@@ -1,9 +1,9 @@
 <% import scala.collection.mutable.ListBuffer %>
 
 <%@ val country: Option[String] %>
-<%@ val jaccard_sims: ListBuffer[(String, String)] %>
+<%@ val country_sims: ListBuffer[(String, String)] %>
 
 <p>
-    <%= country %>:
-    <%= jaccard_sims %>
+    <%= country %>
+    <%= country_sims %>
 <p>

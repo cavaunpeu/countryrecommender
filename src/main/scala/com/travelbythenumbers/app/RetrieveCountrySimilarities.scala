@@ -3,17 +3,19 @@ package com.travelbythenumbers.app
 import scala.collection.mutable.ListBuffer
 
 class RetrieveCountrySimilarities(val country: String) extends SQLiteCredentials {
+
+    val similarities_table = "similarities"
+
     def run() = {
-        /** capitalize the first letter of country! **/
+
         val query = s"""
             SELECT *
-            FROM sims
+            FROM $similarities_table
             WHERE loc1 = "$country"
             OR loc2 = "$country"
             ORDER BY sim DESC
             LIMIT 5
         """
-        println(query)
         val statement = conn.createStatement()
         val resultSet = statement.executeQuery(query)
 
