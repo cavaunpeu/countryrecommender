@@ -1,7 +1,7 @@
 <% import scala.collection.mutable.ListBuffer %>
 
 <%@ val country: Option[String] %>
-<%@ val country_sims: ListBuffer[(String, String)] %>
+<%@ val country_sims: ListBuffer[(String, Double)] %>
 
 
 <div class="container results">
@@ -13,34 +13,54 @@
     #end
     </ol>
 
+    <div id="chart">
+        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
+        <script type="text/javascript">
 
-
-    <div class="chart">
-        <script>
             function getHiddenValues(class_name) {
                 var vals_as_nodelist = document.getElementsByClassName(class_name)
                 var vals_as_array = Array.prototype.slice.call(vals_as_nodelist);
-                return vals_as_array.map(function(v){ return v.innerText })
+                var vals_as_text = vals_as_array.map(function(v){ return v.innerText })
+                return vals_as_text
             }
 
             var countries = getHiddenValues("country")
             var similarities = getHiddenValues("similarity")
-            var data = [4, 8, 15, 16, 23, 42];
+            var data = []
+            for (i = 0; i < countries.length; i += 1) {
+                data.push({
+                    'country': countries[i],
+                    'similarity': similarities[i]
+                });
+            }
 
-            console.log(countries)
-            console.log(similarities)
+            var svg = dimple.newSvg("#chart", 900, 600);
+            var chart = new dimple.chart(svg, data);
+            chart.setBounds(300, 10, 600, 400)
 
+            var x_axis = chart.addMeasureAxis("x", "similarity");
+            x_axis.showGridlines = false;
+            x_axis.hidden = true;
 
-            var x = d3.scale.linear()
-                .domain([0, d3.max(data)])
-                .range([0, 420]);
+            var y_axis = chart.addCategoryAxis("y", "country");
+            y_axis.fontSize = "25px";
+            y_axis.addOrderRule("similarity");
 
-            d3.select(".chart")
-              .selectAll("div")
-                .data(countries)
-              .enter().append("div")
-                .style("width", function(d) { return x(d) + "px"; })
-                .text(function(d) { return d; });
+            chart.addSeries("null", dimple.plot.bar);
+            chart.draw();
+            y_axis.titleShape.remove();
+
         </script>
     </div>
 </div>
+
+
+<html>
+<div id="chartContainer">
+
+
+    });
+  </script>
+</div>
+</html>

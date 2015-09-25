@@ -9,6 +9,7 @@ object CaptureTravelTweets {
             "tbex", "tourism")
 
     def main(args: Array[String]) {
+
         val twitterStream = new TwitterStreamFactory(TwitterUtil.config).getInstance
         twitterStream.addListener(TwitterUtil.simpleStatusListener)
         twitterStream.filter(new FilterQuery().track(travel_tags))

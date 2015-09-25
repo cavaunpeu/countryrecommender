@@ -51,6 +51,7 @@ object TwitterUtil extends SQLiteCredentials {
     }
 
     def simpleStatusListener = new StatusListener() {
+
         def onStatus(status: Status) {
             /** get id, tweet, and count (always 1) */
             val id = status.getId

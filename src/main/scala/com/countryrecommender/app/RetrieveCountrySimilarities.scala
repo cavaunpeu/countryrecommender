@@ -1,6 +1,7 @@
 package com.countryrecommender.app
 
 import scala.collection.mutable.ListBuffer
+import scala.math.BigDecimal
 
 class RetrieveCountrySimilarities(val country: String) extends SQLiteCredentials {
 
@@ -19,13 +20,19 @@ class RetrieveCountrySimilarities(val country: String) extends SQLiteCredentials
         val statement = conn.createStatement()
         val resultSet = statement.executeQuery(query)
 
-        var country_similarities = ListBuffer[(String, String)]()
+        var country_similarities = ListBuffer[(String, Double)]()
         while ( resultSet.next() ) {
-            val sim = resultSet.getString("sim")
+            val sim = resultSet.getFloat("sim")
             val loc1 = resultSet.getString("loc1")
             val loc2 = resultSet.getString("loc2")
-            country_similarities += (if (loc1 == country) loc2 else loc1) -> sim
+            country_similarities += (if (loc1 == country) loc2 else loc1) -> round(sim)
         }
+        println(country_similarities)
         country_similarities
+    }
+
+    def round(double: Double) = {
+
+        BigDecimal(double).setScale(3, BigDecimal.RoundingMode.HALF_UP).toDouble
     }
 }

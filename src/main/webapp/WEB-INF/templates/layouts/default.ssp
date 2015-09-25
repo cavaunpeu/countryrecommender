@@ -16,9 +16,6 @@
 
         <!-- CSS -->
         <link rel="stylesheet" type="text/css" href="/css/main.css">
-
-        <!-- D3 -->
-        <script src="http://d3js.org/d3.v3.min.js"  charset="utf-8"></script>
     </head>
     <body>
         <nav id="menubar" class="navbar navbar-default navbar-fixed-top">
