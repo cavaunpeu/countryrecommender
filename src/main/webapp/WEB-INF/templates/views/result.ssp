@@ -3,10 +3,11 @@
 <%@ val country: Option[String] %>
 <%@ val country_sims: ListBuffer[(String, String)] %>
 
-<div class="container">
-    <hr>
-    <p>
-        <%= country %>
-        <%= country_sims %>
-    </p>
+<div class="container results">
+    <hr style="padding-bottom: 50px">
+    <ol class="similarity-results">
+    #for ((country, similarity) <- country_sims)
+        <li>${country}: ${similarity}</li>
+    #end
+    </ol>
 </div>
