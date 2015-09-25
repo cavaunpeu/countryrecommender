@@ -4,7 +4,7 @@ class Country(country: String) {
 
     def normalize(country: String) = {
         country.toLowerCase
-            .replaceAll("[^a-z]", "")
+            .replaceAll("[^a-z ]", "")
             .split(" ")
             .map(_.capitalize)
             .mkString(" ")
