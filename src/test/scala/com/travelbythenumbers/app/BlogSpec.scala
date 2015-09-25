@@ -1,4 +1,4 @@
-package com.travelbythenumbers.app
+package com.countryrecommender.app
 
 import org.scalatra.test.specs2._
 

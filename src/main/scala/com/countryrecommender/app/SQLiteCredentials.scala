@@ -1,4 +1,4 @@
-package com.travelbythenumbers.app
+package com.countryrecommender.app
 
 import java.sql.{Connection, DriverManager}
 

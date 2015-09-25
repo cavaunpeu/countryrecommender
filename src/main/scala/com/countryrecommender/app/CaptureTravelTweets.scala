@@ -1,4 +1,4 @@
-package com.travelbythenumbers.app
+package com.countryrecommender.app
 
 import twitter4j._
 

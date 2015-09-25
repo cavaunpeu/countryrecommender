@@ -1,4 +1,4 @@
-import com.travelbythenumbers.app._
+import com.countryrecommender.app._
 import org.scalatra._
 import javax.servlet.ServletContext
 

@@ -6,7 +6,7 @@ import com.mojolly.scalate.ScalatePlugin._
 import ScalateKeys._
 
 object CountryrecommenderBuild extends Build {
-  val Organization = "com.travelbythenumbers"
+  val Organization = "com.countryrecommender"
   val Name = "CountryRecommender"
   val Version = "0.1.0-SNAPSHOT"
   val ScalaVersion = "2.11.1"
