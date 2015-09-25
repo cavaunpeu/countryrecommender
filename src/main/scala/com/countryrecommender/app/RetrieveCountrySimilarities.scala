@@ -27,7 +27,6 @@ class RetrieveCountrySimilarities(val country: String) extends SQLiteCredentials
             val loc2 = resultSet.getString("loc2")
             country_similarities += (if (loc1 == country) loc2 else loc1) -> round(sim)
         }
-        println(country_similarities)
         country_similarities
     }
 

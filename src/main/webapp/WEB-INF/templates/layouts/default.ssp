@@ -40,7 +40,7 @@
                                 <input class="form-control"
                                  id="main-input"
                                  type="text"
-                                 name="country"
+                                 name="countries-like"
                                  autofocus="autofocus"
                                  placeholder="Everywhere."/>
                                 <span class="input-group-btn">

@@ -1,13 +1,13 @@
 <% import scala.collection.mutable.ListBuffer %>
 
-<%@ val country: String %>
+<%@ val countries_like: String %>
 <%@ val country_sims: ListBuffer[(String, Double)] %>
 
 
 <div class="container">
     <hr style="padding-bottom: 50px">
     <h1 id="queried-country">
-        Nice. If you like ${country}, try these as well.
+        Nice. If you like ${countries_like}, try these as well.
     </h1>
     <ol class="similarity-results">
     #for ((country, similarity) <- country_sims)
