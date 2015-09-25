@@ -54,6 +54,7 @@ object TwitterUtil extends SQLiteCredentials {
 
         def onStatus(status: Status) {
             /** get id, tweet, and count (always 1) */
+            /** abstract this into new method call `log_tweets_to_database`*/
             val id = status.getId
             val user_id =  status.getUser.getId
             val tweet = status.getText

@@ -49,6 +49,7 @@
             var y_axis = chart.addCategoryAxis("y", "country");
             y_axis.fontSize = "25px";
             y_axis.addOrderRule("similarity");
+            y_axis.ticks = -2;
 
             chart.addSeries("country", dimple.plot.bar);
             chart.ease = "bounce";
