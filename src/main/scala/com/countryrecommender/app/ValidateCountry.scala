@@ -1,7 +1,5 @@
 package com.countryrecommender.app
 
-import java.sql.{Connection, DriverManager}
-
 class ValidateCountry(val country: String) extends SQLiteCredentials {
 
     val countries_table = "countries"

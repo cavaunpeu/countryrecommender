@@ -12,14 +12,13 @@ class Blog extends CountryrecommenderStack {
 
         if (params.contains("countries-like")) {
 
-            val country = params("countries-like").split(" ").map(_.capitalize).mkString(" ")
-            val country_is_valid = new ValidateCountry(country).is_valid
+            val country = new Country(params("countries-like"))
 
-            if (!country_is_valid) {
+            if (!country.is_valid) {
                 ssp("invalid")
             } else {
-                val country_sims = new RetrieveCountrySimilarities(country).run()
-                ssp("result", "countries_like" -> country, "country_sims" -> country_sims)
+                val country_sims = new RetrieveCountrySimilarities(country.name).run()
+                ssp("result", "countries_like" -> country.name, "country_sims" -> country_sims)
             }
 
         } else {
