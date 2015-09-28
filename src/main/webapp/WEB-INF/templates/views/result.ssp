@@ -56,6 +56,9 @@
             chart.draw(1500);
             y_axis.titleShape.remove();
             chart.customClassList.axisLine = null;
+            y_axis.shapes.selectAll("text").on("click", function(d) {
+                window.open("/?countries-like=" + d, "_self")
+            })
 
         </script>
     </div>
