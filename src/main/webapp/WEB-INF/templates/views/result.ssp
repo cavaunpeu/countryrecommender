@@ -38,7 +38,7 @@
                 });
             }
 
-            var svg = dimple.newSvg("#chart", 900, 600);
+            var svg = dimple.newSvg("#chart", 900, 450);
             var chart = new dimple.chart(svg, data);
             chart.setBounds(300, 10, 600, 400)
 
@@ -62,4 +62,5 @@
 
         </script>
     </div>
+    <div id="click-countries-hint">(try clicking the country names)</div>
 </div>
