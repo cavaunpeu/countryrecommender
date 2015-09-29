@@ -7,9 +7,7 @@ import scala.collection.mutable.ListBuffer
 class Blog extends CountryrecommenderStack {
 
     get("/") {
-
         contentType="text/html"
-
         if (params.contains("countries-like")) {
 
             val country = new Country(params("countries-like"))
@@ -24,5 +22,10 @@ class Blog extends CountryrecommenderStack {
         } else {
             ssp("query")
         }
+    }
+
+    get("/info") {
+        contentType="text/html"
+        ssp("info")
     }
 }

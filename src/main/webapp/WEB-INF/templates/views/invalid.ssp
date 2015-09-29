@@ -1,6 +1,6 @@
-<div class="container">
-    <hr style="padding-bottom: 50px">
-    <h1 id="queried-country">
-        Not sure where that one is. Please enter a valid country.
-    </h1>
-</div>
+<% render("query.ssp") %>
+
+<hr style="padding-bottom: 50px">
+<h1 id="queried-country">
+    Not sure where that one is. Please enter a valid country.
+</h1>

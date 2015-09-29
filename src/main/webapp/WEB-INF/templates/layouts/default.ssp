@@ -26,37 +26,12 @@
                     <i class="fa fa-bars"></i>
                     </button>
                     <a class="navbar-brand" href="/">countryrecommender</a>
+                    <a class="navbar-brand" href="/info" style="font-size: 15px">how's this work?</a>
                 </div>
             <div class="container">
         </nav>
-
         <div class="container">
-            <div class="jumbotron">
-                <h1>To where would you like to travel?</h1>
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1 country-input">
-                        <form method="get" action="/">
-                            <div class="input-group">
-                                <input class="form-control"
-                                 id="main-input"
-                                 type="text"
-                                 name="countries-like"
-                                 autofocus="autofocus"
-                                 placeholder="Everywhere."/>
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="submit" type="button">
-                                    Vamos
-                                    </button>
-                                </span>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <section>
             <%= unescape(body) %>
-        </section>
+        </div>
     </body>
 </html>

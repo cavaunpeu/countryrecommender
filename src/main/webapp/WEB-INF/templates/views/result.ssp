@@ -4,63 +4,63 @@
 <%@ val country_sims: ListBuffer[(String, Double)] %>
 
 
-<div class="container">
-    <hr style="padding-bottom: 50px">
-    <h1 id="queried-country">
-        Nice. If you like ${countries_like}, try these as well.
-    </h1>
-    <ol class="similarity-results">
-    #for ((country, similarity) <- country_sims)
-        <li class="country">${country}</li>
-        <li class="similarity">${similarity}</li>
-    #end
-    </ol>
+<% render("query.ssp") %>
 
-    <div id="chart">
-        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-        <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
-        <script type="text/javascript">
+<hr style="padding-bottom: 50px">
+<h1 id="queried-country">
+    Nice. If you like ${countries_like}, try these as well.
+</h1>
+<ol class="similarity-results">
+#for ((country, similarity) <- country_sims)
+    <li class="country">${country}</li>
+    <li class="similarity">${similarity}</li>
+#end
+</ol>
 
-            function getHiddenValues(class_name) {
-                var vals_as_nodelist = document.getElementsByClassName(class_name)
-                var vals_as_array = Array.prototype.slice.call(vals_as_nodelist);
-                var vals_as_text = vals_as_array.map(function(v){ return v.innerText })
-                return vals_as_text
-            }
+<div id="chart">
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
+    <script type="text/javascript">
 
-            var countries = getHiddenValues("country")
-            var similarities = getHiddenValues("similarity")
-            var data = []
-            for (i = 0; i < countries.length; i += 1) {
-                data.push({
-                    'country': countries[i],
-                    'similarity': similarities[i]
-                });
-            }
+        function getHiddenValues(class_name) {
+            var vals_as_nodelist = document.getElementsByClassName(class_name)
+            var vals_as_array = Array.prototype.slice.call(vals_as_nodelist);
+            var vals_as_text = vals_as_array.map(function(v){ return v.innerText })
+            return vals_as_text
+        }
 
-            var svg = dimple.newSvg("#chart", 900, 450);
-            var chart = new dimple.chart(svg, data);
-            chart.setBounds(300, 10, 600, 400)
+        var countries = getHiddenValues("country")
+        var similarities = getHiddenValues("similarity")
+        var data = []
+        for (i = 0; i < countries.length; i += 1) {
+            data.push({
+                'country': countries[i],
+                'similarity': similarities[i]
+            });
+        }
 
-            var x_axis = chart.addMeasureAxis("x", "similarity");
-            x_axis.showGridlines = false;
-            x_axis.hidden = true;
+        var svg = dimple.newSvg("#chart", 900, 450);
+        var chart = new dimple.chart(svg, data);
+        chart.setBounds(300, 10, 600, 400)
 
-            var y_axis = chart.addCategoryAxis("y", "country");
-            y_axis.fontSize = "25px";
-            y_axis.addOrderRule("similarity");
-            y_axis.ticks = -2;
+        var x_axis = chart.addMeasureAxis("x", "similarity");
+        x_axis.showGridlines = false;
+        x_axis.hidden = true;
 
-            chart.addSeries("country", dimple.plot.bar);
-            chart.ease = "bounce";
-            chart.draw(1500);
-            y_axis.titleShape.remove();
-            chart.customClassList.axisLine = null;
-            y_axis.shapes.selectAll("text").on("click", function(d) {
-                window.open("/?countries-like=" + d, "_self")
-            })
+        var y_axis = chart.addCategoryAxis("y", "country");
+        y_axis.fontSize = "25px";
+        y_axis.addOrderRule("similarity");
+        y_axis.ticks = -2;
 
-        </script>
-    </div>
-    <div id="click-countries-hint">(try clicking the country names)</div>
+        chart.addSeries("country", dimple.plot.bar);
+        chart.ease = "bounce";
+        chart.draw(1500);
+        y_axis.titleShape.remove();
+        chart.customClassList.axisLine = null;
+        y_axis.shapes.selectAll("text").on("click", function(d) {
+            window.open("/?countries-like=" + d, "_self")
+        })
+
+    </script>
 </div>
+<div id="click-countries-hint">(try clicking the country names)</div>

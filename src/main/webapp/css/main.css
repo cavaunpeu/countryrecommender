@@ -20,14 +20,24 @@
     display: none;
 }
 
-.similarity-results > li {
-    position: relative;
-    font: 45px/1.5 Helvetica, sans-serif;
-    margin-bottom: 20px;
-}
-
 #click-countries-hint {
   text-align: center;
   font: 20px/1.5 Helvetica, sans-serif;
   margin-bottom: 40px;
 }
+
+.hows-this-work {
+    font-size: 30px;
+}
+
+.hows-this-work > p {
+    padding: 20px;
+    margin-top: 90px;
+    margin-bottom: 20px;
+}
+
+.hows-this-work > ol > li {
+    font-size: 20px;
+    margin: 10px;
+}
+
