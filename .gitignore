@@ -67,3 +67,6 @@ jrebel.lic
 
 # paulp script
 /.lib/
+
+# config.sh
+/config.sh

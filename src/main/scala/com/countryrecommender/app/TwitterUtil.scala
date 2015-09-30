@@ -11,10 +11,10 @@ object TwitterUtil extends SQLiteCredentials {
     val tweets_table = "tweets"
 
     val config = new twitter4j.conf.ConfigurationBuilder()
-        .setOAuthConsumerKey("s83zMIukhW1PyA6fKrEl6EjKc")
-        .setOAuthConsumerSecret("flFs0z27xjpM00jTN8hkIw4BAKRukbOgM1AHxnkQa4kEn8vrIR")
-        .setOAuthAccessToken("1201496244-PtQ2ybfSEu0vQWYOx60YQeH4N5UpFLF5apQbxsP")
-        .setOAuthAccessTokenSecret("bqa1FKFmZvo2jzmte1cZfB0X4OrXpeOSWMplv6ImH4aCS")
+        .setOAuthConsumerKey(System.getenv("TWITTER_OAUTH_CONSUMER_KEY"))
+        .setOAuthConsumerSecret(System.getenv("TWITTER_OAUTH_CONSUMER_SECRET"))
+        .setOAuthAccessToken(System.getenv("TWITTER_OAUTH_ACCESS_TOKEN"))
+        .setOAuthAccessTokenSecret(System.getenv("TWITTER_OAUTH_ACCESS_TOKEN_SECRET"))
         .build
 
     def load_countries_and_capitals() = {
