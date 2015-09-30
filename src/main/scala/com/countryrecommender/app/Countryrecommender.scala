@@ -4,7 +4,7 @@ import org.scalatra._
 import scalate.ScalateSupport
 import scala.collection.mutable.ListBuffer
 
-class Blog extends CountryrecommenderStack {
+class Countryrecommender extends CountryrecommenderStack {
 
     get("/") {
         contentType="text/html"
