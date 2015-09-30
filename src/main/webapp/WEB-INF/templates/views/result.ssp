@@ -23,9 +23,9 @@
     <script type="text/javascript">
 
         function getHiddenValues(class_name) {
-            var vals_as_nodelist = document.getElementsByClassName(class_name)
+            var vals_as_nodelist = document.getElementsByClassName(class_name);
             var vals_as_array = Array.prototype.slice.call(vals_as_nodelist);
-            var vals_as_text = vals_as_array.map(function(v){ return v.innerText })
+            var vals_as_text = vals_as_array.map(function(v){ return v.innerText });
             return vals_as_text
         }
 
@@ -41,7 +41,7 @@
 
         var svg = dimple.newSvg("#chart", 900, 450);
         var chart = new dimple.chart(svg, data);
-        chart.setBounds(300, 10, 600, 400)
+        chart.setBounds(300, 10, 600, 400);
 
         var x_axis = chart.addMeasureAxis("x", "similarity");
         x_axis.showGridlines = false;
@@ -58,9 +58,8 @@
         y_axis.titleShape.remove();
         chart.customClassList.axisLine = null;
         y_axis.shapes.selectAll("text").on("click", function(d) {
-            window.open("/?countries-like=" + d, "_self")
+            document.location.href = "/?countries-like=" + d;
         })
-
     </script>
 </div>
 <div id="click-countries-hint">(try clicking the country names)</div>
