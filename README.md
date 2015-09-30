@@ -19,4 +19,4 @@ $ ./sbt
 > browse
 ```
 
-If `browse` doesn't launch your browser, manually open [http://localhost:8080/](http://localhost:8080/) in your browser.
+If `browse` doesn't launch your browser, manually open [http://localhost:8080/](http://localhost:8080/) in your browser. In addition, be sure to replace the environment variables in ```config.example.sh``` to match your own, then run the file before starting the application.
