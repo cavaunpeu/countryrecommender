@@ -1,0 +1,2 @@
+- log searches to database
+- fix taiwan
