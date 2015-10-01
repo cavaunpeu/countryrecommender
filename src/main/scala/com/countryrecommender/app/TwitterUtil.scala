@@ -5,7 +5,7 @@ import java.sql.{Connection, DriverManager}
 import scala.collection.mutable.{ListBuffer, Map}
 import scala.util.matching.Regex
 
-object TwitterUtil extends SQLiteCredentials {
+object TwitterUtil extends PosgreSQLCredentials {
 
     val countries_table = "countries"
     val tweets_table = "tweets"
@@ -65,7 +65,7 @@ object TwitterUtil extends SQLiteCredentials {
                 for ( l <- location ) {
                     println(l + " : " + tweet)
                     val statement = s"""
-                        INSERT INTO $tweets_table (id, user_id, tweet, loc, count)
+                        INSERT INTO $tweets_table (id, user_id, tweet, location, count)
                         VALUES (?, ?, ?, ?, ?)
                     """
                     val ps = conn.prepareStatement(statement)

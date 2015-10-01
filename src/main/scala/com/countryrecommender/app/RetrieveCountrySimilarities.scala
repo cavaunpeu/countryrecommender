@@ -3,7 +3,7 @@ package com.countryrecommender.app
 import scala.collection.mutable.ListBuffer
 import scala.math.BigDecimal
 
-class RetrieveCountrySimilarities(val country: String) extends SQLiteCredentials {
+class RetrieveCountrySimilarities(val country: String) extends PosgreSQLCredentials {
 
     val similarities_table = "similarities"
 
@@ -12,9 +12,9 @@ class RetrieveCountrySimilarities(val country: String) extends SQLiteCredentials
         val query = s"""
             SELECT *
             FROM $similarities_table
-            WHERE loc1 = "$country"
-            OR loc2 = "$country"
-            ORDER BY sim DESC
+            WHERE location_1 = '$country'
+            OR location_2 = '$country'
+            ORDER BY similarity DESC
             LIMIT 5
         """
         val statement = conn.createStatement()
@@ -22,10 +22,10 @@ class RetrieveCountrySimilarities(val country: String) extends SQLiteCredentials
 
         var country_similarities = ListBuffer[(String, Double)]()
         while ( resultSet.next() ) {
-            val sim = resultSet.getFloat("sim")
-            val loc1 = resultSet.getString("loc1")
-            val loc2 = resultSet.getString("loc2")
-            country_similarities += (if (loc1 == country) loc2 else loc1) -> round(sim)
+            val similarity = resultSet.getFloat("similarity")
+            val location_1 = resultSet.getString("location_1")
+            val location_2 = resultSet.getString("location_2")
+            country_similarities += (if (location_1 == country) location_2 else location_1) -> round(similarity)
         }
         country_similarities
     }

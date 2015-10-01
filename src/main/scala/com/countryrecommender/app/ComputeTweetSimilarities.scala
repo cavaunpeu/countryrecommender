@@ -3,7 +3,7 @@ package com.countryrecommender.app
 import java.sql.{ResultSet}
 import scala.collection.mutable.ListBuffer
 
-object ComputeTweetSimilarities extends SQLiteCredentials {
+object ComputeTweetSimilarities extends PosgreSQLCredentials {
     def main(args: Array[String]) {
 
         val database_table = args(0)
@@ -13,12 +13,12 @@ object ComputeTweetSimilarities extends SQLiteCredentials {
         val reduced_tweets = reduce_to_vector_of_user_ids(mapped_tweets)
 
         val similarities = compute_jaccard_similarities(reduced_tweets)
-        write_similarities_to_sqlite(similarities)
+        write_similarities_to_postgres(similarities)
     }
 
     def import_tweets(tbl_name: String) = {
 
-        val query = "SELECT user_id, loc, count FROM " + tbl_name
+        val query = "SELECT user_id, location, count FROM " + tbl_name
         val statement = conn.createStatement()
         val resultSet = statement.executeQuery(query)
         resultSet
@@ -28,7 +28,7 @@ object ComputeTweetSimilarities extends SQLiteCredentials {
 
         var tweets = ListBuffer[Tuple2[String, String]]()
         while ( resultSet.next() ) {
-            tweets += Tuple2(resultSet.getString("loc"), resultSet.getString("user_id"))
+            tweets += Tuple2(resultSet.getString("location"), resultSet.getString("user_id"))
         }
         tweets.toList
     }
@@ -51,14 +51,14 @@ object ComputeTweetSimilarities extends SQLiteCredentials {
         }.toList
     }
 
-    def write_similarities_to_sqlite(sims: List[((String, String), Float)]) {
+    def write_similarities_to_postgres(sims: List[((String, String), Float)]) {
 
         val delete_statement = conn.prepareStatement("DELETE FROM similarities")
         delete_statement.executeUpdate
 
         sims.foreach{
             case (countries, sim) =>
-            val ps = conn.prepareStatement("""INSERT INTO similarities (loc1, loc2, sim)
+            val ps = conn.prepareStatement("""INSERT INTO similarities (location_1, location_2, similarity)
                                              VALUES (?, ?, ?)""")
             ps.setString(1, countries._1)
             ps.setString(2, countries._2)

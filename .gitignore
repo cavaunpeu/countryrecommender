@@ -70,3 +70,6 @@ jrebel.lic
 
 # config.sh
 /config.sh
+
+# exclude .sql dumps
+*.sql
