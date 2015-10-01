@@ -73,3 +73,6 @@ jrebel.lic
 
 # exclude .sql dumps
 *.sql
+
+# exclude bin folder with shell scripts
+bin
