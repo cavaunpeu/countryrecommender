@@ -2,11 +2,13 @@ package com.countryrecommender.app
 
 class Country(country: String) {
 
+    val stopwords = List("and", "of")
+
     def normalize(country: String) = {
         country.toLowerCase
-            .replaceAll("[^a-z ]", "")
+            .replaceAll("[^a-z- ]", "")
             .split(" ")
-            .map(_.capitalize)
+            .map(word => if (stopwords.contains(word)) word else word.capitalize)
             .mkString(" ")
     }
 
