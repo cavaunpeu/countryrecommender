@@ -7,13 +7,22 @@ class Country(country: String) {
     def normalize(country: String) = {
         country.toLowerCase
             .replaceAll("[^a-z- ]", "")
-            .split(" ")
+            .split(space_or_hyphen)
             .map(word => if (stopwords.contains(word)) word else word.capitalize)
-            .mkString(" ")
+            .mkString(space_or_hyphen)
     }
 
     def name = {
         normalize(country)
+    }
+
+    def space_or_hyphen = {
+        if (country.contains("-")) {
+            "-"
+        }
+        else {
+            " "
+        }
     }
 
     def is_valid = {
