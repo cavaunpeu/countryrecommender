@@ -76,3 +76,8 @@ jrebel.lic
 
 # exclude bin folder with shell scripts
 bin
+
+# exclude crons
+/capture_travel_tweets.sh
+travel_tweets.log
+
