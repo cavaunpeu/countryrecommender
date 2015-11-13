@@ -78,6 +78,4 @@ jrebel.lic
 bin
 
 # exclude crons
-/capture_travel_tweets.sh
-travel_tweets.log
-
+cron/
